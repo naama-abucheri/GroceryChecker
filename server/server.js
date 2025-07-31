@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Routes
 const itemRoutes = require("./routes/itemRoutes");
-app.use("/api/items", itemRoutes);
+app.use("/api/Items", itemRoutes);
 
 // Default route (optional)
 app.get("/", (req, res) => {
