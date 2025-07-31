@@ -1,34 +1,36 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
-import Dashboard from "./pages/Dashboard";
-import PantryItems from "./pages/PantryItems";
-import AddItem from "./pages/AddItem";
-import EditItem from "./pages/EditItem";
-import NotFound from "./pages/NotFound";
+import React, { useEffect, useState } from 'react';
+import api from './api';
 
-const queryClient = new QueryClient();
+interface Item {
+  _id: string;
+  name: string;
+  quantity: number;
+  // add other fields if needed
+}
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout><Dashboard /></Layout>} />
-          <Route path="/pantry" element={<Layout><PantryItems /></Layout>} />
-          <Route path="/add" element={<Layout><AddItem /></Layout>} />
-          <Route path="/edit/:id" element={<Layout><EditItem /></Layout>} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App: React.FC = () => {
+  const [items, setItems] = useState<Item[]>([]);
+
+  useEffect(() => {
+    api.get('/items')
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((err) => {
+        console.error('Error fetching items:', err);
+      });
+  }, []);
+
+  return (
+    <div>
+      <h1>Grocery Items</h1>
+      <ul>
+        {items.map(item => (
+          <li key={item._id}>{item.name} - {item.quantity}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default App;
