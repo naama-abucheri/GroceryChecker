@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch(err => console.error("❌ MongoDB connection error:", err));
 
 // Routes
-const itemRoutes = require("./routes/itemroutes");
+const itemRoutes = require("./routes/itemRoutes");
 app.use("/api/items", itemRoutes);
 
 // Default route (optional)
