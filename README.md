@@ -7,10 +7,9 @@ GroceryChecker is a full-stack MERN application that allows users to view and ma
 
 ## 🌐 Live Demo
 
-- 🔗 **Frontend (React):** [https://your-frontend-url.onrender.com]((https://grocery-checker-wmh7-git-main-naamas-projects-1869d81c.vercel.app/))  
-- 🔗 **Backend (API):** [https://your-backend-url.onrender.com/items](https://grocerychecker.onrender.com)
+- 🔗 **Frontend (React):** https://grocery-checker-wmh7-git-main-naamas-projects-1869d81c.vercel.app/
+- 🔗 **Backend (API):** https://grocerychecker.onrender.com
 
-> Replace these with your actual live Render URLs.
 
 ---
 
